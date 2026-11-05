@@ -1,6 +1,28 @@
 #include "Authorization.hpp"
 #include "Accounts.hpp"
+void Start(){
+	while (true) {
+		if (Login()) {
+			if (currentStatus == L"SuperAdmin") {
 
+			}
+			else if (currentStatus == L"Admin") {
+				// TO_DO
+			}
+			else if (currentStatus == L"User") {
+				// TO_DO
+			}
+			else { std::wcerr << L"\n\n_CURRENT_STATUS_LOGIN_ERROR_\n\n"; }
+		}
+		else {
+			system("cls");
+			std::wcout << L"Всего доброго\n";
+			Sleep(1500);
+
+			break;
+		}
+	}
+}
 bool Login() {
 	std::wstring login, pass;
 	while (true) {
@@ -29,17 +51,4 @@ bool Login() {
 		}
 	}
 	return false;
-}
-void Start(){
-	while (true) {
-		if (Login()) {
-
-		}
-		else {
-			system("cls");
-			std::wcout << L"Всего доброго\n";
-			Sleep(1500);
-			break;
-		}
-	}
 }
