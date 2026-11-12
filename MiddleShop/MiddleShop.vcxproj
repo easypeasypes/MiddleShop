@@ -23,6 +23,7 @@
     <ClCompile Include="Authorization.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ServiceFunctions.cpp" />
+    <ClCompile Include="Storage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Accounts.hpp" />
@@ -37,6 +38,7 @@
     <ProjectGuid>{47e5f030-8df1-4dd8-ab20-1b13c7199b0e}</ProjectGuid>
     <RootNamespace>MiddleShop</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MiddleShop</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
