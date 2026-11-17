@@ -248,3 +248,6 @@ void ChangePrice(){
 		}
 	}
 }
+void ChangeStorage(){
+
+}
