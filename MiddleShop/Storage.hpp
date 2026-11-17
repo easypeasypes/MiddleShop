@@ -19,4 +19,5 @@ void ShowStorage(int mode = 0);
 void AddProduct();
 void RemoveProduct();
 void ChangePrice();
+void ChangeStorage();
 #endif // !_STORAGE_HPP_
