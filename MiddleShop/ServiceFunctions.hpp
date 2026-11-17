@@ -16,4 +16,5 @@ void FillArray(ArrType* dynamiArr, ArrType* staticArr, size_t commonSize) {
 		dynamiArr[i] = staticArr[i];
 	}
 }
+bool IsNumber(const std::wstring& str);
 #endif // !_SERVICE_FUNCTIONS_HPP_

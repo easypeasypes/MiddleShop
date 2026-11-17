@@ -12,8 +12,8 @@ int main() {
 	delete[]statusArr;
 
 	if (!IsStorageCreated) {
-	delete[]nameArr;
 	delete[]idArr;
+	delete[]nameArr;
 	delete[]countArr;
 	delete[]priceArr;
 	}
