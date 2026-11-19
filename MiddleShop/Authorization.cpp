@@ -85,7 +85,7 @@ void SuperAdminMenu(){
 			ChangePrice();
 		}
 		else if (choose == L"6") {
-			AddNewProduct();
+			ChangeStorage();
 		}
 		else if (choose == L"7") {
 
