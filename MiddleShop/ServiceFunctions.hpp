@@ -5,6 +5,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <iomanip>
+#include <cwctype>
 inline void Err() {
 	std::wcout << L"Некорректный ввод\n\n";
 	Sleep(1500);
@@ -25,6 +26,20 @@ void ArrPushBack(ArrType *&arr, size_t size) {
 	for (size_t i = 0; i < size - 1; i++)
 	{
 		temp[i] = arr[i];
+	}
+	std::swap(temp, arr);
+	delete[]temp;
+}
+template <class ArrType>
+void ArrDeleteByIndex(ArrType*& arr, size_t size, size_t index) {
+	size--;
+	ArrType* temp = new ArrType[size];
+	for (size_t i = 0, j = 0; i < size; i++, j++)
+	{
+		if (j == index) {
+			j++;
+		}
+		temp[i] = arr[j];
 	}
 	std::swap(temp, arr);
 	delete[]temp;

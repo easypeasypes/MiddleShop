@@ -82,7 +82,7 @@ void ShowStorage(int mode){
 	else if (mode == 4) {
 		system("cls");
 		std::wcout << L"\n\n\t\t\tТовары \"Чижик\"\n\n";
-		std::wcout << L"ID\t" << std::left << std::setw(38) << L"Название товара\t" << L"Цена \t\n";
+		std::wcout << L"ID\t" << std::left << L"Название товара\t" << L"Цена \t\n";
 		for (size_t i = 0; i < sizeSt; i++) {
 			std::wcout << idArr[i] << L"\t" << std::fixed << std::left << std::setw(30) << nameArr[i] << L"\t\t" << std::setprecision(2) << priceArr[i] << L"\n";
 		}
@@ -278,7 +278,7 @@ void ChangeStorage(){
 			ChangeProductName();
 		}
 		else if (choose == L"3") {
-		
+			DeleteProduct();
 		}
 		else if (choose == L"4") {
 		
@@ -403,27 +403,103 @@ void AddNewProduct() {
 	}
 }
 void ChangeProductName(){
-	std::wstring chooseName;
+	std::wstring chooseName, chooseId, choose;
+	int id = 0;
 	while (true) {
 		system("cls");
-		ShowStorage(4); // остановились
+		ShowStorage(4);
 		std::wcout << L"Введите название нового товара или \"exit\" для выхода: ";
-		Getline(chooseName);
-		if (chooseName == L"exit" || chooseName == L"Exit") {
-			std::wcout << L"Отмена добавления нового товара\n\n";
+		Getline(chooseId);
+		if (chooseId == L"exit" || chooseId == L"Exit") {
+			std::wcout << L"Завершение операции изменения товара\n\n";
 			Sleep(1500);
 			return;
 		}
-		if (chooseName.size() < 3 || chooseName.size() > 40) {
-			std::wcout << L"Ошибка длины названия товара\nДопустимое значение от 3 до 40 символов\nКол-во символов в названии вашего нового товара: " << chooseName.size() << L"\n\n";
-			Sleep(1600);
-			continue;
+		if (IsNumber(chooseId)) {
+			id = std::stoi(chooseId) - 1;
+			if (id < 0 || id > sizeSt - 1) {
+				Err();
+			}
+			else {
+				std::wcout << L"Введите новое название для товара: ";
+				Getline(chooseName);
+				if (chooseName.size() < 3 || chooseName.size() > 40) {
+					std::wcout << L"Ошибка длины названия товара\nДопустимое значение от 3 до 40 символов\nКол-во символов в названии вашего нового товара: " << chooseName.size() << L"\n\n";
+					Sleep(1600);
+					continue;
+				}
+				if (!IsNotSame(chooseName, nameArr, sizeSt)) {
+					std::wcout << L"Данный товар уже есть на складе\n\n";
+				}
+				else {
+					while (true) {
+						system("cls");
+						std::wcout << nameArr[id] << L" -----> " << chooseName << L"\n\n";
+						std::wcout << L"Подтвердить?\n1 - Да\n2 - Нет\nВвод: ";
+						Getline(choose);
+						if (choose == L"1") {
+							std::wcout << L"Переименование завершено\n\n";
+							nameArr[id] = chooseName;
+							Sleep(1500);
+							break;
+						}
+						else if (choose == L"2") {
+							std::wcout << L"Отмена изменения цены " << nameArr[id] << L"\n";
+							Sleep(1500);
+							break;
+						}
+						else {
+							Err();
+						}
+					}
+				}
+			}
 		}
-		if (IsNotSame(chooseName, nameArr, sizeSt)) {
-			break;
+	}
+}
+void DeleteProduct() {
+	std::wstring chooseId, pass;
+	int id = 0;
+	while (true) {
+		system("cls");
+		ShowStorage(4);
+		std::wcout << L"Введите ID товара или \"exit\" для выхода: ";
+		Getline(chooseId);
+		if (chooseId == L"exit" || chooseId == L"Exit") {
+			std::wcout << L"Завершение операции удаления товара\n\n";
+			Sleep(1500);
+			return;
 		}
-		else {
-			std::wcout << L"Данный товар уже есть на складе\n\n";
+		if (IsNumber(chooseId)) {
+			id = std::stoi(chooseId) - 1;
+			if (id < 0 || id > sizeSt - 1) {
+				Err();
+			}
+			else {
+				std::wcout << L"Подтвердите удаление товара: " << nameArr[id] << L"\nВведите пароль Супер Администратора: ";
+				Getline(pass);
+				if (pass == passArr[0]) {
+					std::wcout << L"Удаление товара";
+					for (size_t i = 0; i < 3; i++){
+						Sleep(650);
+						std::wcout << L" .";
+					}
+					Sleep(650);
+					currentStorageSize -= countArr[id];
+					ArrDeleteByIndex(idArr, sizeSt, id);
+					ArrDeleteByIndex(nameArr, sizeSt, id);
+					ArrDeleteByIndex(countArr, sizeSt, id);
+					ArrDeleteByIndex(priceArr, sizeSt, id);
+					sizeSt--;
+					for (size_t i = id; i < sizeSt; i++){
+						idArr[i] = i + 1;
+					}
+					// :)
+					std::wcout << L"\n\nТовар успешно удалён\n\n";
+					Sleep(1500);
+					continue;
+				}
+			}
 		}
 	}
 }

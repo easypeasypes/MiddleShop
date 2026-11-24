@@ -1,7 +1,7 @@
 #ifndef _STORAGE_HPP_
 #define _STORAGE_HPP_
 
-#include "ServiceFunctions.hpp"
+#include "Accounts.hpp"
 
 extern size_t sizeSt; //размер массива склада
 extern size_t* idArr;
@@ -22,4 +22,5 @@ void ChangePrice();
 void ChangeStorage();
 void AddNewProduct();
 void ChangeProductName();
+void DeleteProduct();
 #endif // !_STORAGE_HPP_
