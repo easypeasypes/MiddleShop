@@ -510,5 +510,5 @@ void DeleteProduct() {
 }
 void ChangeStorageLimits(){
 	std::wcout << L"\n\nВ процессе разработки";
-
+	return;
 }
