@@ -277,16 +277,21 @@ void ChangeStorage(){
 		else if (choose == L"2") {
 			ChangeProductName();
 		}
-		else if (choose == L"3") {
+		else if (choose == L"3" && sizeSt > 0) {
 			DeleteProduct();
 		}
 		else if (choose == L"4") {
-		
+			ChangeStorageLimits();
 		}
 		else if (choose == L"0") {
-			return;
+			std::wcout << L"Выход из редактора склада\n\n";
+			Sleep(1500);
+			break;
 		}
 		else {
+			if (sizeSt < 1) {
+				std::wcout << L"Склад пуст\n\n";
+			}
 			Err();
 		}
 	}
@@ -502,4 +507,8 @@ void DeleteProduct() {
 			}
 		}
 	}
+}
+void ChangeStorageLimits(){
+	std::wcout << L"\n\nВ процессе разработки";
+
 }

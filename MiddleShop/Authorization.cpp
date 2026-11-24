@@ -94,7 +94,9 @@ void SuperAdminMenu(){
 
 		}
 		else if (choose == L"0") {
-
+			std::wcout << L"Выход\n\n";
+			Sleep(1500);
+			break;
 		}
 		else {
 			Err();
