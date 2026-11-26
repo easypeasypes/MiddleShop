@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <iomanip>
 #include <cwctype>
+#include <unordered_set>
 inline void Err() {
 	std::wcout << L"Некорректный ввод\n\n";
 	Sleep(1500);
@@ -18,7 +19,7 @@ void FillArray(ArrType* dynamiArr, ArrType* staticArr, size_t commonSize) {
 	}
 }
 bool IsNumber(const std::wstring& str);
-bool IsNotSame(std::wstring& chooseName, std::wstring*nameArr, size_t nameArraySize);
+bool IsNotSame(const std::wstring& chooseName, std::wstring*nameArr, size_t nameArraySize);
 template<typename ArrType>
 void ArrPushBack(ArrType *&arr, size_t size) {
 	size++;

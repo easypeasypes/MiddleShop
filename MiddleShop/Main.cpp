@@ -10,6 +10,8 @@ int main() {
 	delete[]loginArr;
 	delete[]passArr;
 	delete[]statusArr;
+	delete[]fineArr;
+	delete[]salesArr;
 
 	if (!IsStorageCreated) {
 	delete[]idArr;
